@@ -45,16 +45,6 @@
               </select>
             </div>
           </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label>Nama Petugas</label>
-              <select name="kode_petugas" id="" class="form-control">
-                <?php foreach($dataPetugas as $petugas){ ?>
-                  <option value="<?php echo $petugas->kode_petugas; ?>"><?php echo $petugas->nama ?></option>
-                <?php } ?>
-              </select>
-            </div>
-          </div>
         </div>
       </div>
       <div class="box-footer clearfix">

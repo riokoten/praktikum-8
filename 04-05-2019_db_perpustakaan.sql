@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 27 Apr 2019 pada 13.14
+-- Waktu pembuatan: 04 Bulan Mei 2019 pada 05.13
 -- Versi server: 10.1.32-MariaDB
 -- Versi PHP: 7.2.5
 
@@ -35,6 +35,13 @@ CREATE TABLE `anggota` (
   `jenjang` varchar(5) NOT NULL,
   `alamat` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `anggota`
+--
+
+INSERT INTO `anggota` (`kode_anggota`, `nama`, `prodi`, `jenjang`, `alamat`) VALUES
+(1, 'Afif', 'Teknik Informatika', 'S1', 'Jln. Goa Gong, Jimbaran, Bali');
 
 -- --------------------------------------------------------
 
@@ -75,6 +82,13 @@ CREATE TABLE `peminjaman` (
   `kode_petugas` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `peminjaman`
+--
+
+INSERT INTO `peminjaman` (`kode_pinjam`, `kode_anggota`, `kode_petugas`) VALUES
+(1, 1, 7);
+
 -- --------------------------------------------------------
 
 --
@@ -84,8 +98,18 @@ CREATE TABLE `peminjaman` (
 CREATE TABLE `petugas` (
   `kode_petugas` int(11) NOT NULL,
   `nama` varchar(155) NOT NULL,
-  `alamat` varchar(155) NOT NULL
+  `username` varchar(155) NOT NULL,
+  `alamat` varchar(155) NOT NULL,
+  `password` text NOT NULL,
+  `last_login` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `petugas`
+--
+
+INSERT INTO `petugas` (`kode_petugas`, `nama`, `username`, `alamat`, `password`, `last_login`) VALUES
+(7, 'Admin Perpustakaan', 'admin', 'Cloud', 'e10adc3949ba59abbe56e057f20f883e', NULL);
 
 --
 -- Indexes for dumped tables
@@ -123,25 +147,25 @@ ALTER TABLE `petugas`
 -- AUTO_INCREMENT untuk tabel `anggota`
 --
 ALTER TABLE `anggota`
-  MODIFY `kode_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `kode_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `buku`
 --
 ALTER TABLE `buku`
-  MODIFY `kode_register` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `kode_register` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `peminjaman`
 --
 ALTER TABLE `peminjaman`
-  MODIFY `kode_pinjam` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `kode_pinjam` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `petugas`
 --
 ALTER TABLE `petugas`
-  MODIFY `kode_petugas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `kode_petugas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

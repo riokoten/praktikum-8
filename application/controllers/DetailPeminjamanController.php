@@ -8,16 +8,19 @@ class DetailPeminjamanController extends CI_Controller {
 		$this->load->model('Buku');
 	}
 	public function index($kode_pinjam) { 
+		if (!$this->session->userdata('isLoggedIn')) redirect(base_url().'login','refresh');
 		$data['dataDetailPeminjaman'] = $this->DetailPeminjaman->getListDetailPeminjaman($kode_pinjam);
 		$data['kode_pinjam'] = $kode_pinjam;
 		$this->template->load('template','detail_peminjaman/index',$data);
 	}
 	public function create($kode_pinjam){
+		if (!$this->session->userdata('isLoggedIn')) redirect(base_url().'login','refresh');
 		$data['dataBuku'] = $this->Buku->getListBuku();
 		$data['kode_pinjam'] = $kode_pinjam;
 		$this->template->load('template','detail_peminjaman/create', $data);
 	}
 	public function store($kode_pinjam){
+		if (!$this->session->userdata('isLoggedIn')) redirect(base_url().'login','refresh');
 		$data = array(
 			'kode_register' => $this->input->post('kode_register'),
 			'kode_pinjam' => $kode_pinjam,

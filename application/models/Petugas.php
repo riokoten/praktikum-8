@@ -17,7 +17,7 @@ class Petugas extends CI_Model {
     }
     public function getDataPetugas($kode_petugas){
         $this->db->from('petugas');
-        $this->db->where('kode_petugas',$kode_petugas);
+        $this->db->where('kode_petugas',$kode_petugas); 
         return $this->db->get()->row_array();
     }
     public function update($kode_petugas){
@@ -29,6 +29,24 @@ class Petugas extends CI_Model {
         $this->db->where('kode_petugas',$kode_petugas);
         $result = $this->db->update('petugas');
         return $result;
+    }
+    public function getPetugasLogin($user, $pass)
+	{
+		$this->db->select('kode_petugas, nama, username, last_login');
+		$this->db->where('username', $user);
+		$this->db->where('password', $pass);
+		return $this->db->get('petugas');
+    }
+    public function setLastLogin($kode_petugas){
+        $date = date('Y-m-d H:i:s');
+        $this->db->set('last_login',$date);
+        $this->db->where('kode_petugas', $kode_petugas);
+        return $date;
+    }
+
+    public function getPetugasByUsername($username){
+        $this->db->where('username', $username);
+        return $this->db->get('petugas')->row_array();
     }
 }
 ?>

@@ -41,8 +41,20 @@
               <input type="text" name="nama" class="form-control" placeholder="Masukan nama..." required>
             </div>
             <div class="form-group">
+              <label>Username</label>
+              <input type="text" name="username" class="form-control" placeholder="Masukan username..." required>
+            </div>
+            <div class="form-group">
               <label>Alamat</label>
               <input type="text" name="alamat" class="form-control" placeholder="Masukan alamat..." required>
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input type="password" name="password" class="form-control" placeholder="Masukan password..." required>
+            </div>
+            <div class="form-group">
+              <label>Konfirmasi Password</label>
+              <input type="password" name="konfirmasi_password" class="form-control" placeholder="Masukan konfirmasi password..." required>
             </div>
           </div>
         </div>
@@ -63,14 +75,15 @@ $(function(){
       url : '<?php echo base_url("petugas/store");?>',
       data : dataForm,
       success : function(data){
-        if(data){
+        data = $.parseJSON(data);
+        if(data.status == 1){
           $('.callout-success').fadeIn();
           setTimeout(function(){ 
           $('.callout-success').fadeOut("slow");
           }, 3000);
           $('#formInput')[0].reset();
         }else {
-          $('.callout-danger').find('p').html("Gagal menambah data");
+          $('.callout-danger').find('p').html(data.message);
           $('.callout-danger').fadeIn();
           setTimeout(function(){ 
           $('.callout-danger').fadeOut("slow");
